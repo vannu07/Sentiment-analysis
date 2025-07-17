@@ -1,0 +1,40 @@
+# Core ML Libraries
+pandas
+numpy
+scikit-learn
+xgboost
+joblib
+
+# NLP Libraries
+nltk
+textblob
+
+# Web Frameworks
+Flask
+Flask-CORS
+streamlit
+dash
+
+# Visualization
+matplotlib
+seaborn
+plotly
+wordcloud
+
+# Data Processing
+openpyxl
+Pillow
+
+# Development Tools
+pytest
+black
+flake8
+
+# Deployment
+gunicorn
+waitress
+
+# Additional utilities
+python-dotenv
+pyyaml
+requests

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Customer Sentiment Analysis Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <meta name="description" content="Advanced AI-powered customer sentiment analysis platform with real-time insights, multiple ML models, and comprehensive analytics.">
+    <meta name="keywords" content="sentiment analysis, AI, machine learning, customer feedback, analytics, NLP">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>SentimentAI</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#analyze" class="nav-link">Analyze</a></li>
+                <li><a href="#batch" class="nav-link">Batch Process</a></li>
+                <li><a href="#analytics" class="nav-link">Analytics</a></li>
+                <li><a href="#models" class="nav-link">Models</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Sentiment Analysis Dashboard</h1>
+                    <p>Real-time customer sentiment insights powered by advanced machine learning</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon positive">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="positive-count">0</h3>
+                            <p>Positive Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon negative">
+                            <i class="fas fa-frown"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="negative-count">0</h3>
+                            <p>Negative Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon neutral">
+                            <i class="fas fa-meh"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="neutral-count">0</h3>
+                            <p>Neutral Reviews</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon info">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="accuracy-score">0%</h3>
+                            <p>Model Accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="charts-row">
+                    <div class="chart-container">
+                        <h3>Sentiment Distribution</h3>
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Sentiment Trend</h3>
+                        <canvas id="trendChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Word Cloud Section -->
+                <div class="wordcloud-section">
+                    <h3>Popular Keywords</h3>
+                    <div id="wordcloud-container">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <span>Generating word cloud...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analyze Section -->
+        <section id="analyze" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Text Sentiment Analysis</h1>
+                    <p>Analyze individual text for sentiment using advanced ML models</p>
+                </div>
+
+                <div class="analyze-container">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="text-input">Enter text to analyze:</label>
+                            <textarea id="text-input" placeholder="Type or paste your text here..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="model-select">Select Model:</label>
+                            <select id="model-select">
+                                <option value="logistic_regression">Logistic Regression</option>
+                                <option value="random_forest">Random Forest</option>
+                                <option value="xgboost">XGBoost</option>
+                                <option value="naive_bayes">Naive Bayes</option>
+                            </select>
+                        </div>
+
+                        <button id="analyze-btn" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Analyze Sentiment
+                        </button>
+                    </div>
+
+                    <div class="results-section">
+                        <div id="analysis-results" class="results-card hidden">
+                            <h3>Analysis Results</h3>
+                            <div class="result-content">
+                                <div class="sentiment-result">
+                                    <span class="sentiment-emoji"></span>
+                                    <span class="sentiment-text"></span>
+                                    <span class="confidence-score"></span>
+                                </div>
+                                <div class="probabilities">
+                                    <div class="prob-bar">
+                                        <span>Positive</span>
+                                        <div class="progress-bar">
+                                            <div class="progress positive" style="width: 0%"></div>
+                                        </div>
+                                        <span class="prob-value">0%</span>
+                                    </div>
+                                    <div class="prob-bar">
+                                        <span>Negative</span>
+                                        <div class="progress-bar">
+                                            <div class="progress negative" style="width: 0%"></div>
+                                        </div>
+                                        <span class="prob-value">0%</span>
+                                    </div>
+                                    <div class="prob-bar">
+                                        <span>Neutral</span>
+                                        <div class="progress-bar">
+                                            <div class="progress neutral" style="width: 0%"></div>
+                                        </div>
+                                        <span class="prob-value">0%</span>
+                                    </div>
+                                </div>
+                                <div class="text-stats">
+                                    <div class="stat">
+                                        <span class="label">Words:</span>
+                                        <span class="value" id="word-count">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="label">Characters:</span>
+                                        <span class="value" id="char-count">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="label">Polarity:</span>
+                                        <span class="value" id="polarity">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Batch Process Section -->
+        <section id="batch" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Batch Processing</h1>
+                    <p>Process multiple texts at once for sentiment analysis</p>
+                </div>
+
+                <div class="batch-container">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="batch-input">Enter multiple texts (one per line):</label>
+                            <textarea id="batch-input" rows="10" placeholder="Text 1&#10;Text 2&#10;Text 3&#10;..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="batch-model-select">Select Model:</label>
+                            <select id="batch-model-select">
+                                <option value="logistic_regression">Logistic Regression</option>
+                                <option value="random_forest">Random Forest</option>
+                                <option value="xgboost">XGBoost</option>
+                                <option value="naive_bayes">Naive Bayes</option>
+                            </select>
+                        </div>
+
+                        <button id="batch-analyze-btn" class="btn btn-primary">
+                            <i class="fas fa-list"></i>
+                            Process Batch
+                        </button>
+                    </div>
+
+                    <div class="results-section">
+                        <div id="batch-results" class="results-card hidden">
+                            <h3>Batch Results</h3>
+                            <div class="batch-summary">
+                                <div class="summary-stats">
+                                    <div class="stat">
+                                        <span class="label">Total:</span>
+                                        <span class="value" id="batch-total">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="label">Positive:</span>
+                                        <span class="value positive" id="batch-positive">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="label">Negative:</span>
+                                        <span class="value negative" id="batch-negative">0</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="label">Neutral:</span>
+                                        <span class="value neutral" id="batch-neutral">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="batch-results-table">
+                                <table id="results-table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Text</th>
+                                            <th>Sentiment</th>
+                                            <th>Confidence</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Advanced Analytics</h1>
+                    <p>Deep insights into sentiment patterns and model performance</p>
+                </div>
+
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3>Model Performance Comparison</h3>
+                        <div id="model-comparison-chart"></div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Top Brands by Sentiment</h3>
+                        <div id="brand-sentiment-chart"></div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>Sentiment Timeline</h3>
+                        <div id="timeline-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Models Section -->
+        <section id="models" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h1>Model Information</h1>
+                    <p>Detailed information about available machine learning models</p>
+                </div>
+
+                <div class="models-grid" id="models-grid">
+                    <!-- Model cards will be dynamically generated -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
