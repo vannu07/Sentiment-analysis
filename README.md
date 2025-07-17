@@ -15,9 +15,9 @@
 <br>
 
 ```
-    ╔══════════════════════════════════════════════════════════════╗
-    ║  🎯 FINAL YEAR PROJECT | 🚀 PRODUCTION READY | 📊 ANALYTICS  ║
-    ╚══════════════════════════════════════════════════════════════╝
+    ╔═════════════════════════════════════════════════════════════╗
+    ║ 🎯 FINAL YEAR PROJECT | 🚀 PRODUCTION READY | 📊 ANALYTICS ║
+    ╚═════════════════════════════════════════════════════════════╝
 ```
 
 </div>
@@ -31,26 +31,17 @@
 ### 🌟 **Interactive Preview**
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  💬 "This product is absolutely amazing!"                      │
-│  ➤ 😊 POSITIVE (95.2% confidence)                              │
-│                                                                 │
-│  💬 "Terrible experience, would not recommend"                 │
-│  ➤ 😞 NEGATIVE (92.8% confidence)                              │
-│                                                                 │
-│  💬 "It's okay, nothing special"                               │
-│  ➤ 😐 NEUTRAL (78.4% confidence)                               │
-└─────────────────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────┐
+│  💬 "This product is absolutely amazing!"                     │
+│  ➤ 😊 POSITIVE (95.2% confidence)                             │
+│                                                                │
+│  💬 "Terrible experience, would not recommend"                │
+│  ➤ 😞 NEGATIVE (92.8% confidence)                             │
+│                                                                │
+│  💬 "It's okay, nothing special"                              │
+│  ➤ 😐 NEUTRAL (78.4% confidence)                              │
+└────────────────────────────────────────────────────────────────┘
 ```
-
-### 🚀 **Quick Access Links**
-[![🌐 Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Visit_Now-blue?style=for-the-badge)](https://your-demo-url.com)
-[![📊 Analytics](https://img.shields.io/badge/📊_Analytics-Dashboard-green?style=for-the-badge)](https://your-analytics-url.com)
-[![📚 Documentation](https://img.shields.io/badge/📚_Docs-Read_More-orange?style=for-the-badge)](https://your-docs-url.com)
-
-</div>
-
----
 
 ## 📋 **Project Overview**
 
@@ -74,11 +65,11 @@ This comprehensive **Sentiment Analysis Platform** represents the culmination of
 ### 🤖 **AI & Machine Learning**
 ```
 ┌─────────────────┬─────────────────┬─────────────────┬─────────────────┐
-│  🧮 Logistic    │  🌳 Random      │  🚀 XGBoost     │  📊 Naive       │
+│  🧮 Logistic    │  🌳 Random     │  🚀 XGBoost     │  📊 Naive      │
 │  Regression     │  Forest         │  Gradient       │  Bayes          │
 │  ────────────   │  ────────────   │  ────────────   │  ────────────   │
-│  ⚡ Fast        │  🎯 Accurate    │  🏆 Advanced    │  📈 Simple      │
-│  🔍 Interpret.  │  📊 Robust      │  ⚙️ Tunable     │  🎲 Probabilis. │
+│  ⚡ Fast        │  🎯 Accurate   │  🏆 Advanced   │  📈 Simple      │
+│  🔍 Interpret.  │  📊 Robust     │  ⚙️ Tunable    │  🎲 Probabilis  │
 └─────────────────┴─────────────────┴─────────────────┴─────────────────┘
 ```
 
@@ -853,11 +844,11 @@ MIT License - Feel free to use, modify, and distribute
 ### 🚀 **Ready to Analyze Sentiments? Let's Get Started!**
 
 [![🚀 Get Started](https://img.shields.io/badge/🚀_Get_Started-Click_Here-success?style=for-the-badge&logo=rocket)](https://github.com/your-repo)
-[![📊 Live Demo](https://img.shields.io/badge/📊_Live_Demo-Try_Now-blue?style=for-the-badge&logo=chart-bar)](https://your-demo-url.com)
+[![📊 Live Demo](https://img.shields.io/badge/📊_Live_Demo-Try_Now-blue?style=for-the-badge&logo=chart-bar)]
 
 ---
 
-**⚡ Made with ❤️ by [Your Name] | Final Year Project 2024**
+**⚡ Made with ❤️ by Varnit Kumar | Final Year Project 2025**
 
 *"Transforming text into insights, one sentiment at a time"*
 
