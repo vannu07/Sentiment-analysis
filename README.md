@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Advanced Sentiment Analysis Platform
+# 🧠 Sentiment Analysis 
 **A comprehensive AI-powered sentiment analysis solution with professional web interfaces and real-time analytics**
 
 <br>
