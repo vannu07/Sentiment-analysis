@@ -1,23 +1,44 @@
-name: Pylint
+name: Python Lint & Format
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.8", "3.9", "3.10"]
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-        pylint $(git ls-files '*.py')
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black isort pylint
+
+      - name: Auto-format with Black
+        run: |
+          black .
+
+      - name: Sort imports with isort
+        run: |
+          isort .
+
+      - name: Run Pylint
+        run: |
+          pylint $(git ls-files '*.py') --exit-zero > pylint-report.txt
+          SCORE=$(grep -oP '(?<=Your code has been rated at )[-0-9\.]+' pylint-report.txt | tail -1)
+          echo "Pylint score: $SCORE"
+          if (( $(echo "$SCORE < 8" | bc -l) )); then
+            echo "❌ Lint score below 8. Failing build."
+            exit 1
+          else
+            echo "✅ Lint score acceptable."
+          fi
