@@ -391,5 +391,5 @@ def health_check():
 
 if __name__ == '__main__':
     # Do not hard-code debug=True; control it via environment with a safe default
-    debug_mode = os.getenv("FLASK_DEBUG", "0").lower() in ("1", "true", "yes")
+    debug_mode = os.getenv("FLASK_DEBUG", "0").strip().lower() in ("1", "true", "yes")
     app.run(debug=debug_mode, port=5000)
